@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Design the UI",
+    "description": "Complete the UI designs using Adobe",
+    "user_id": 1
+  },
+  {
+    "title": "Seed the database",
+    "description": "Seed the database for todos and users",
+    "user_id": 2
+  }
+]
