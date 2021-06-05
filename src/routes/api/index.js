@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const todoRoutes = require("./todoRoutes");
+const todoRoutes = require("./todos");
 
 const router = Router();
 
