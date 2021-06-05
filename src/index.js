@@ -8,6 +8,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sequelize = require("./config/connection");
 const routes = require("./routes");
+const logger = require("./middleware/logger");
 
 const PORT = process.env.PORT || 3000;
 
@@ -34,6 +35,7 @@ app.use(session(sessionOptions));
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../", "public")));
+app.use(logger);
 app.use(routes);
 
 const init = async () => {
