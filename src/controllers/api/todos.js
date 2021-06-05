@@ -1,6 +1,7 @@
 const { User, Todo } = require("../../models");
 
 const getTodos = async (req, res) => {
+  console.log("controller");
   try {
     const todos = await Todo.findAll({
       include: [
