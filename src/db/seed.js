@@ -1,7 +1,6 @@
 const sequelize = require("../config/connection");
 const todo = require("../models/todo");
 const user = require("../models/user");
-
 const todos = require("./todos.json");
 const users = require("./users.json");
 

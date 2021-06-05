@@ -1,22 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
-const bcrypt = require("bcrypt");
 
+const hooks = require("../hooks");
 const sequelize = require("../config/connection");
 
 const options = {
-  hooks: {
-    beforeBulkCreate: async (users) => {
-      const promises = users.map((user) => {
-        return bcrypt.hash(user.password, 10);
-      });
-
-      const passwords = await Promise.all(promises);
-
-      passwords.forEach((password, index) => {
-        users[index].password = password;
-      });
-    },
-  },
+  hooks,
   sequelize,
   modelName: "user",
   timestamps: true,

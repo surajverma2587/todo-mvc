@@ -5,6 +5,11 @@
     "user_id": 1
   },
   {
+    "title": "Write tests",
+    "description": "Complete the API tests",
+    "user_id": 1
+  },
+  {
     "title": "Seed the database",
     "description": "Seed the database for todos and users",
     "user_id": 2
