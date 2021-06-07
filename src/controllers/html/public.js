@@ -20,7 +20,9 @@ const renderLogin = (req, res) => {
 
 const renderSignup = (req, res) => {
   try {
-    res.render("sign-up");
+    res.render("sign-up", {
+      layout: "sign-up",
+    });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: "Failed to render" });
