@@ -1,5 +1,5 @@
 const renderDashboard = (req, res) => {
-  res.send("DASHBOARD");
+  res.render("DASHBOARD");
 };
 
 module.exports = { renderDashboard };

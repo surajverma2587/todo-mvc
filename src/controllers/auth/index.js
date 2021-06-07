@@ -7,32 +7,34 @@ const login = async (req, res) => {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.redirect("/login");
+      console.log("User does not exist");
+      return res.status(404).json({ error: "Failed to login" });
     }
 
     const validPassword = await user.isPasswordValid(password);
 
     if (!validPassword) {
-      return res.redirect("/login");
+      console.log("Invalid password");
+      return res.status(404).json({ error: "Failed to login" });
     }
 
     req.session.save(() => {
       req.session.isLoggedIn = true;
-      return res.redirect("/dashboard");
+      return res.status(200).json({ data: "Login successful" });
     });
   } catch (err) {
     console.error(err.message);
+    return res.status(500).json({ error: "Failed to login" });
   }
 };
 
 const logout = (req, res) => {
   if (req.session.isLoggedIn) {
     req.session.destroy(() => {
-      console.log("logged out");
-      return res.redirect("/login");
+      return res.status(200).json({ data: "Logout successful" });
     });
   } else {
-    return res.end();
+    return res.status(500).json({ error: "Failed to logout" });
   }
 };
 
