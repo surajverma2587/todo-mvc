@@ -1,5 +1,7 @@
 const renderDashboard = (req, res) => {
-  res.render("DASHBOARD");
+  const { firstName, lastName } = req.session;
+
+  res.render("DASHBOARD", { firstName, lastName });
 };
 
 module.exports = { renderDashboard };
