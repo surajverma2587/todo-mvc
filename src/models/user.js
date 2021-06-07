@@ -33,8 +33,8 @@ const schema = {
     allowNull: false,
     validate: {
       isEmail: true,
-      unique: true,
     },
+    unique: true,
   },
   password: {
     type: DataTypes.STRING,

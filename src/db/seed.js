@@ -1,3 +1,4 @@
+require("dotenv").config();
 const sequelize = require("../config/connection");
 const todo = require("../models/todo");
 const user = require("../models/user");

@@ -26,7 +26,36 @@ const login = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.send("logout");
+  if (req.session.isLoggedIn) {
+    req.session.destroy(() => {
+      console.log("logged out");
+      return res.redirect("/login");
+    });
+  } else {
+    return res.end();
+  }
 };
 
-module.exports = { login, logout };
+const signup = async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+
+    if (firstName && lastName && email && password) {
+      await User.create({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password,
+      });
+
+      return res.redirect("/login");
+    }
+
+    return res.status(400).json({ error: "Failed to create user" });
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).json({ error: "Failed to create user" });
+  }
+};
+
+module.exports = { login, logout, signup };
