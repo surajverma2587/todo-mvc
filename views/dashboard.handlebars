@@ -1,4 +1,10 @@
 {{> private-navbar}}
 <div class="container">
   <h1>Welcome to {{ firstName }} {{ lastName }} To Do App! 🚀</h1>
+
+  <ul class="d-flex flex-wrap justify-content-between">
+    {{#each todos as |todo| }}
+      {{> todo-card}}
+    {{/each }}
+  </ul>
 </div>

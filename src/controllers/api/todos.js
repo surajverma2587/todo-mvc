@@ -2,13 +2,19 @@ const { User, Todo } = require("../../models");
 
 const getTodos = async (req, res) => {
   try {
+    const { userId } = req.session;
+
     const todos = await Todo.findAll({
+      where: {
+        user_id: userId,
+      },
       include: [
         {
           model: User,
         },
       ],
     });
+
     return res.status(200).json(todos);
   } catch (err) {
     console.error(err.message);

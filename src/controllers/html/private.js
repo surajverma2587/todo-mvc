@@ -1,7 +1,22 @@
-const renderDashboard = (req, res) => {
-  const { firstName, lastName } = req.session;
+const { User, Todo } = require("../../models");
 
-  res.render("DASHBOARD", { firstName, lastName });
+const renderDashboard = async (req, res) => {
+  const { firstName, lastName, userId } = req.session;
+
+  const todos = await Todo.findAll({
+    where: {
+      user_id: userId,
+    },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
+
+  const formattedTodos = todos.map((todo) => todo.get({ plain: true }));
+
+  res.render("DASHBOARD", { firstName, lastName, todos: formattedTodos });
 };
 
 module.exports = { renderDashboard };
