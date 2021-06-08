@@ -16,7 +16,7 @@ const handleSubmit = async (event) => {
     }),
   };
 
-  const response = await fetch("http://localhost:3000/auth/login", options);
+  const response = await fetch("/auth/login", options);
 
   if (response.status !== 200) {
     console.log("FAILED LOGIN");

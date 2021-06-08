@@ -7,7 +7,7 @@ const handleClick = async () => {
     redirect: "follow",
   };
 
-  const response = await fetch("http://localhost:3000/auth/logout", options);
+  const response = await fetch("/auth/logout", options);
 
   if (response.status !== 200) {
     console.log("FAILED LOGOUT");

@@ -6,10 +6,7 @@ const onDelete = async (event) => {
     redirect: "follow",
   };
 
-  const response = await fetch(
-    `http://localhost:3000/api/todos/${id}`,
-    options
-  );
+  const response = await fetch(`/api/todos/${id}`, options);
 
   if (response.status !== 200) {
     console.log("FAILED DELETE");
@@ -40,10 +37,7 @@ const onEditTodo = async (event) => {
     }),
   };
 
-  const response = await fetch(
-    `http://localhost:3000/api/todos/${id}`,
-    options
-  );
+  const response = await fetch(`/api/todos/${id}`, options);
 
   if (response.status !== 200) {
     console.log("FAILED UPDATE");

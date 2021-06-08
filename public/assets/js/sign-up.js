@@ -28,7 +28,7 @@ const handleSubmit = async (event) => {
       }),
     };
 
-    const response = await fetch("http://localhost:3000/auth/signup", options);
+    const response = await fetch("/auth/signup", options);
 
     if (response.status !== 200) {
       console.log("FAILED SIGN UP");
