@@ -51,8 +51,25 @@ const updateTodo = (req, res) => {
   res.send("update");
 };
 
-const deleteTodo = (req, res) => {
-  res.send("delete");
+const deleteTodo = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const data = await Todo.destroy({
+      where: {
+        id,
+      },
+    });
+
+    if (!data) {
+      return res.status(404).json({ error: "Todo does not exist" });
+    }
+
+    return res.status(200).json({ data: "Delete successful" });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ error: "Failed to delete todo" });
+  }
 };
 
 module.exports = {
