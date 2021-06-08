@@ -1,0 +1,41 @@
+{{> private-navbar}}
+<div
+  class="
+    position-absolute
+    top-50
+    start-50
+    translate-middle
+    text-center
+    w-50
+  "
+>
+  <form name="edit-todo-form" id={{id}}>
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Title"
+        value="{{title}}"
+      />
+    </div>
+    <div class="mb-3">
+      <textarea
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="Description"
+      >{{description}}</textarea>
+    </div>
+    <div class="mb-3">
+      <select id="status" class="form-select" aria-label="Default select example">
+        <option value="To Do" {{#if (isTodo status)}}selected{{/if}}>To Do</option>
+        <option value="In Progress" {{#if (isInProgress status)}}selected{{/if}}>In Progress</option>
+        <option value="Done" {{#if (isDone status)}}selected{{/if}}>Done</option>
+      </select>
+    </div>
+    <div class="mb-3 d-grid gap-2">
+      <button type="submit" class="btn btn-primary mb-3">Save</button>
+    </div>
+  </form>
+</div>

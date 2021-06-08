@@ -47,8 +47,23 @@ const createTodo = (req, res) => {
   res.send("create");
 };
 
-const updateTodo = (req, res) => {
-  res.send("update");
+const updateTodo = async (req, res) => {
+  try {
+    const { title, description, status } = req.body;
+    const { id } = req.params;
+
+    const todo = { title, description, status };
+
+    const [updated] = await Todo.update(todo, { where: { id } });
+
+    if (!updated) {
+      return res.status(404).json({ error: "Todo does not exist" });
+    }
+    return res.status(200).json({ data: "Update successful" });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ error: "Failed to update todo" });
+  }
 };
 
 const deleteTodo = async (req, res) => {

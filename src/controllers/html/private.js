@@ -16,7 +16,22 @@ const renderDashboard = async (req, res) => {
 
   const formattedTodos = todos.map((todo) => todo.get({ plain: true }));
 
-  res.render("DASHBOARD", { firstName, lastName, todos: formattedTodos });
+  res.render("dashboard", { firstName, lastName, todos: formattedTodos });
 };
 
-module.exports = { renderDashboard };
+const renderEditTodo = async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.session;
+
+  const data = await Todo.findOne({ where: { id, user_id: userId } });
+
+  if (!data) {
+    return res.redirect("/dashboard");
+  }
+
+  const todo = data.get({ plain: true });
+
+  res.render("editTodo", todo);
+};
+
+module.exports = { renderDashboard, renderEditTodo };
