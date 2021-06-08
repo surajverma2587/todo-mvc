@@ -1,6 +1,7 @@
 const renderHome = (req, res) => {
   try {
-    res.render("home");
+    const { isLoggedIn } = req.session;
+    res.render("home", { isLoggedIn });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: "Failed to render" });

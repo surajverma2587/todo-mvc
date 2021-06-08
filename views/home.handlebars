@@ -1,4 +1,8 @@
+{{#if isLoggedIn}}
+{{> private-navbar}}
+{{else}}
 {{> public-navbar}}
+{{/if}}
 <div class="position-absolute top-50 start-50 translate-middle text-center">
   <h1>Todo App</h1>
   <h3>If you can't do it, todo can...</h3>
